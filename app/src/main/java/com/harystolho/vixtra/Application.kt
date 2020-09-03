@@ -1,6 +1,8 @@
 package com.harystolho.vixtra
 
 import android.app.Application
+import org.koin.android.ext.koin.androidContext
+import org.koin.core.context.startKoin
 
 class Application : Application() {
 
@@ -8,8 +10,8 @@ class Application : Application() {
         super.onCreate()
 
         startKoin {
-            androidContext(this@)
-            modules(listOf(appInject, viewModelModule, interactorModule, repositoryModule))
+            androidContext(this@Application)
+            modules(com.harystolho.vixtra.di.modules)
         }
     }
 

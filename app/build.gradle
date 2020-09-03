@@ -54,5 +54,6 @@ dependencies {
     implementation "org.koin:koin-androidx-scope:2.0.1"
     implementation "org.koin:koin-androidx-viewmodel:2.0.1"
 
+    // Charts
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 }
