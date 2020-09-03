@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_dashboard
             )
         )
+
         setupActionBarWithNavController(navController, appBarConfiguration)
         nav_view.setupWithNavController(navController)
     }
