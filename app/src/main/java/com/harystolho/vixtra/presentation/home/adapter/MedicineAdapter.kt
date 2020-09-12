@@ -4,11 +4,13 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.harystolho.vixtra.R
 import com.harystolho.vixtra.core.entity.Medicine
 import com.harystolho.vixtra.util.DateUtil
 import kotlinx.android.synthetic.main.layout_medicine_item.view.*
+import java.util.*
 
 class MedicineAdapter(
     medicines: List<Medicine>,
@@ -51,6 +53,16 @@ class MedicineViewHolder(
         itemView.medi_description.text = medicine.description
         itemView.medi_interval.text = medicine.hourInterval.toString() + " hrs"
         itemView.medi_consumption_time.text = DateUtil.toDDMMYYYYHHMM(medicine.consumptionTime)
+
+        if (medicine.consumptionTime.time.time < Date().time) {
+            itemView.setBackgroundColor(
+                ResourcesCompat.getColor(itemView.context.resources, R.color.red, null)
+            )
+        } else {
+            itemView.setBackgroundColor(
+                ResourcesCompat.getColor(itemView.context.resources, R.color.white, null)
+            )
+        }
     }
 
 }
