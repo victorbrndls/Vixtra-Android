@@ -5,7 +5,8 @@ import com.harystolho.vixtra.core.repository.MedicineRepository
 import java.util.*
 
 class MedicineService(
-    private val medicineRepository: MedicineRepository
+    private val medicineRepository: MedicineRepository,
+    private val medicineHistoricService: MedicineHistoricService
 ) {
 
     suspend fun save(medicine: Medicine) {
@@ -22,6 +23,8 @@ class MedicineService(
 
     suspend fun consume(id: Long) {
         val medicine = medicineRepository.get(id) ?: return
+
+        medicineHistoricService.recordConsumption(medicine)
 
         if (medicine.repetition == 1) {
             delete(id)
