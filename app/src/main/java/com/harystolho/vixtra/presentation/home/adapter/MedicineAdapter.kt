@@ -11,7 +11,9 @@ import com.harystolho.vixtra.util.DateUtil
 import kotlinx.android.synthetic.main.layout_medicine_item.view.*
 
 class MedicineAdapter(
-    medicines: List<Medicine>
+    medicines: List<Medicine>,
+    private val onClick: (Medicine) -> Unit,
+    private val onDelete: (Medicine) -> Unit
 ) : RecyclerView.Adapter<MedicineViewHolder>() {
 
     private val _medicines = mutableListOf(*medicines.toTypedArray())
@@ -19,7 +21,7 @@ class MedicineAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MedicineViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.layout_medicine_item, parent, false)
-        return MedicineViewHolder(view)
+        return MedicineViewHolder(view, onClick, onDelete)
     }
 
     override fun getItemCount() = _medicines.size
@@ -36,16 +38,19 @@ class MedicineAdapter(
 
 }
 
-class MedicineViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+class MedicineViewHolder(
+    view: View, private val onClick: (Medicine) -> Unit, private val onDelete: (Medicine) -> Unit
+) : RecyclerView.ViewHolder(view) {
 
     @SuppressLint("SetTextI18n")
     fun bind(medicine: Medicine) {
-        itemView.medi_delete.setOnClickListener { }
+        itemView.setOnClickListener { onClick(medicine) }
+        itemView.medi_delete.setOnClickListener { onDelete(medicine) }
 
         itemView.medi_name.text = medicine.name
         itemView.medi_description.text = medicine.description
         itemView.medi_interval.text = medicine.hourInterval.toString() + " hrs"
-        itemView.medi_consumption_time.text = DateUtil.toDDMMYYYYHHMMSS(medicine.consumptionTime)
+        itemView.medi_consumption_time.text = DateUtil.toDDMMYYYYHHMM(medicine.consumptionTime)
     }
 
 }

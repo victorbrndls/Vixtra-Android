@@ -1,9 +1,11 @@
 package com.harystolho.vixtra.presentation.add_medicine
 
 import android.os.Bundle
+import android.text.Editable
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.Observer
 import com.harystolho.vixtra.R
@@ -32,7 +34,7 @@ class AddMedicineActivity : AppCompatActivity() {
         addmed_interval.doAfterTextChanged {
             viewModel.updateModel(hourInterval = it?.toString()?.toIntOrNull())
         }
-        addmed_start_time_layout.setOnClickListener { showStartTimePicker() }
+        addmed_start_time_layout_wrapper.setOnClickListener { showStartTimePicker() }
         addmed_repetition.doAfterTextChanged {
             viewModel.updateModel(repetition = it?.toString()?.toIntOrNull())
         }
@@ -52,6 +54,7 @@ class AddMedicineActivity : AppCompatActivity() {
             }
 
             viewModel.updateModel(startTime = time)
+            addmed_start_time.text = Editable.Factory.getInstance().newEditable("$h:$m")
         }, true).apply {
             version = TimePickerDialog.Version.VERSION_2
         }.show(supportFragmentManager, null)
@@ -63,6 +66,9 @@ class AddMedicineActivity : AppCompatActivity() {
         supportActionBar?.setDisplayShowTitleEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.setHomeAsUpIndicator(
+            ResourcesCompat.getDrawable(resources, R.drawable.arrow_back_white_24, null)!!
+        )
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -86,8 +92,10 @@ class AddMedicineActivity : AppCompatActivity() {
 
         viewModel.error.observe(this, Observer {
             when (it) {
-                AddMedicineError.MEDICINE_FIELD -> TODO()
-                AddMedicineError.HOUR_FIELD -> TODO()
+                AddMedicineError.MEDICINE_FIELD -> addmed_medicine_layout.error =
+                    getString(R.string.error_required_field)
+                AddMedicineError.HOUR_FIELD -> addmed_interval.error =
+                    getString(R.string.error_required_field)
             }
         })
     }

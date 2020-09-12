@@ -5,9 +5,9 @@ import java.util.*
 
 object DateUtil {
 
-    private val DDMMYYYYHHMMSSFormatter =
-        SimpleDateFormat("dd/MM/yyyy HH:mm:kk", Locale.US)
+    private val DDMMYYYYHHMMFormatter =
+        SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.US)
 
-    fun toDDMMYYYYHHMMSS(calendar: Calendar): String = DDMMYYYYHHMMSSFormatter.format(calendar.time)
+    fun toDDMMYYYYHHMM(calendar: Calendar): String = DDMMYYYYHHMMFormatter.format(calendar.time)
 
 }

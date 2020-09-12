@@ -19,14 +19,40 @@ class HomeViewModel(
         viewModelScope.launch {
             isLoading.value = true
 
-            action.value = HomeAction.ShowMedicines(medicineService.getMedicines())
+            val medicines = medicineService.getMedicines().sortedBy { it.consumptionTime }
+            action.value = HomeAction.ShowMedicines(medicines)
 
             isLoading.value = false
         }
+    }
+
+    fun confirmConsume(medicine: Medicine) {
+        action.value = HomeAction.ConfirmConsumeMedicine(medicine)
+    }
+
+    fun consume(medicine: Medicine) {
+        viewModelScope.launch {
+            loading { medicineService.consume(medicine.id) }
+            loadMedicines()
+        }
+    }
+
+    fun delete(medicine: Medicine) {
+        viewModelScope.launch {
+            loading { medicineService.delete(medicine.id) }
+            loadMedicines()
+        }
+    }
+
+    private suspend fun loading(block: suspend () -> Unit) {
+        isLoading.value = true
+        block()
+        isLoading.value = false
     }
 
 }
 
 sealed class HomeAction {
     class ShowMedicines(val medicines: List<Medicine>) : HomeAction()
+    class ConfirmConsumeMedicine(val medicine: Medicine) : HomeAction()
 }

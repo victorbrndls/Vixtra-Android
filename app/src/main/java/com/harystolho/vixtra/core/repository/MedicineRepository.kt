@@ -6,12 +6,19 @@ class MedicineRepository {
 
     private val medicines = mutableListOf<Medicine>()
 
-    suspend fun save(medicine: Medicine) {
-        val toKeep = medicines.filter { it.id != medicine.id }
-        medicines.clear()
+    fun get(id: Long): Medicine? {
+        return medicines.firstOrNull { it.id == id }
+    }
 
-        medicines.addAll(toKeep)
+    suspend fun save(medicine: Medicine) {
+        delete(medicine.id)
         medicines.add(medicine)
+    }
+
+    suspend fun delete(id: Long) {
+        val toKeep = medicines.filter { it.id != id }
+        medicines.clear()
+        medicines.addAll(toKeep)
     }
 
     suspend fun getMedicines(): List<Medicine> {

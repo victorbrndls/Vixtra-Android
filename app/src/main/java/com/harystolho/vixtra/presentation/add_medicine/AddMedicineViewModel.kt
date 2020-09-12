@@ -43,6 +43,7 @@ class AddMedicineViewModel(
             medicineService.save(medicine)
 
             isLoading.value = false
+            action.value = AddMedicineAction.Finish
         }
     }
 

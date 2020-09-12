@@ -14,7 +14,8 @@
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:titleTextColor="@color/mdtp_white" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/addmed_medicine_layout"
@@ -32,6 +33,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/addmed_medicine"
+            android:inputType="textCapSentences"
+            android:singleLine="true"
             tools:text="Eno" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -52,6 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/addmed_description"
+            android:singleLine="true"
             tools:text="Tomar diluido em agua" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -73,6 +77,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/addmed_interval"
+            android:inputType="number"
+            android:singleLine="true"
             tools:text="5" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -93,9 +99,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/addmed_start_date"
+            android:singleLine="true"
             tools:text="12:30" />
 
     </com.google.android.material.textfield.TextInputLayout>
+
+    <FrameLayout
+        android:id="@+id/addmed_start_time_layout_wrapper"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/addmed_start_time_layout"
+        app:layout_constraintEnd_toEndOf="@+id/addmed_start_time_layout"
+        app:layout_constraintStart_toStartOf="@+id/addmed_start_time_layout"
+        app:layout_constraintTop_toTopOf="@+id/addmed_start_time_layout" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/addmed_repetition_layout"
@@ -113,6 +129,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/addmed_repetition"
+            android:inputType="number"
+            android:singleLine="true"
             tools:text="6" />
 
     </com.google.android.material.textfield.TextInputLayout>

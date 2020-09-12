@@ -1,7 +1,6 @@
 <resources>
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight">
-        <!-- Customize your theme here. -->
+
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">#008FEE</item>
         <item name="colorPrimaryDark">#005D9A</item>
         <item name="colorAccent">#4A18A6</item>

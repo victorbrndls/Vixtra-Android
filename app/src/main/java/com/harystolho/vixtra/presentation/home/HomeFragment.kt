@@ -5,8 +5,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.transition.TransitionManager
 import com.harystolho.vixtra.R
 import com.harystolho.vixtra.core.entity.Medicine
 import com.harystolho.vixtra.presentation.add_medicine.AddMedicineActivity
@@ -45,20 +47,34 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupAdapter() {
-        adapter = MedicineAdapter(emptyList())
+        adapter = MedicineAdapter(emptyList(), onClick, onDelete)
         homeMedicines.adapter = adapter
     }
+
+    private val onClick = { medicine: Medicine -> viewModel.confirmConsume(medicine) }
+    private val onDelete = { medicine: Medicine -> viewModel.delete(medicine) }
 
     private fun observeViewModel() {
         viewModel.action.observe(viewLifecycleOwner, Observer {
             when (it) {
                 is HomeAction.ShowMedicines -> showMedicines(it.medicines)
+                is HomeAction.ConfirmConsumeMedicine -> confirmConsumeMedicine(it.medicine)
             }
         })
 
         viewModel.isLoading.observe(viewLifecycleOwner, Observer {
-
+            TransitionManager.beginDelayedTransition(homeProgressContainer)
+            homeProgress.visibility = if (it) View.VISIBLE else View.GONE
         })
+    }
+
+    private fun confirmConsumeMedicine(medicine: Medicine) {
+        AlertDialog.Builder(requireContext())
+            .setTitle(R.string.generic_confirm)
+            .setMessage(R.string.takemed_confirm)
+            .setPositiveButton(R.string.yes) { _, _ -> viewModel.consume(medicine) }
+            .setNegativeButton(R.string.no) { _, _ -> }
+            .show()
     }
 
     private fun showMedicines(medicines: List<Medicine>) {
