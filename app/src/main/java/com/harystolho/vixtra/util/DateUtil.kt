@@ -10,4 +10,11 @@ object DateUtil {
 
     fun toDDMMYYYYHHMM(calendar: Calendar): String = DDMMYYYYHHMMFormatter.format(calendar.time)
 
+    fun todayMidnight() = Calendar.getInstance().apply {
+        set(Calendar.HOUR_OF_DAY, 0)
+        set(Calendar.MINUTE, 0)
+        set(Calendar.SECOND, 0)
+        set(Calendar.MILLISECOND, 0)
+    }
+
 }

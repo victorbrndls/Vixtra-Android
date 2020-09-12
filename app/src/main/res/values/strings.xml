@@ -22,4 +22,7 @@
 
     <string name="error_required_field">Campo obrigatório</string>
 
+    <string name="historic_daily">Diario</string>
+    <string name="historic_weekly">Semanal</string>
+
 </resources>

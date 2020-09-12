@@ -9,8 +9,15 @@ class MedicineHistoricService(
     private val medicineConsumptionRepository: MedicineConsumptionRepository
 ) {
 
-    suspend fun getConsumption(): List<MedicineConsumption> {
-        return medicineConsumptionRepository.get()
+    suspend fun getConsumption(
+        startDate: Calendar, endDate: Calendar? = null
+    ): List<MedicineConsumption> {
+        return medicineConsumptionRepository.get().filter {
+            it.consumption.timeInMillis >= startDate.timeInMillis
+        }.filter {
+            endDate ?: return@filter true
+            it.consumption.timeInMillis <= endDate.timeInMillis
+        }
     }
 
     suspend fun recordConsumption(medicine: Medicine) {
