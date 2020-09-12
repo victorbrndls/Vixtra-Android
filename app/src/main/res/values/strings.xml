@@ -25,4 +25,14 @@
     <string name="historic_daily">Diario</string>
     <string name="historic_weekly">Semanal</string>
 
+    <array name="week_days">
+        <item>Domingo</item>
+        <item>Segunda-feira</item>
+        <item>Terça-feira</item>
+        <item>Quarta-feira</item>
+        <item>Quinta-feira</item>
+        <item>Sexta-feira</item>
+        <item>Sábado</item>
+    </array>
+
 </resources>

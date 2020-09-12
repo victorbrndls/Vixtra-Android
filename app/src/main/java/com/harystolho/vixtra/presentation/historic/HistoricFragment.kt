@@ -16,6 +16,7 @@ import com.github.mikephil.charting.formatter.ValueFormatter
 import com.harystolho.vixtra.R
 import kotlinx.android.synthetic.main.fragment_historic.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.util.*
 
 class HistoricFragment : Fragment() {
 
@@ -79,6 +80,7 @@ class HistoricFragment : Fragment() {
 
         viewModel.weeklyConsumption.observe(viewLifecycleOwner, Observer { models ->
             showOnChart(bar_chart_weekly, models)
+            bar_chart_weekly.xAxis.valueFormatter = WeeklyChartValueFormatter(models)
         })
     }
 
@@ -96,6 +98,16 @@ class HistoricFragment : Fragment() {
 
         chart.data = barData
         chart.xAxis.labelCount = models.size
+    }
+
+    private inner class WeeklyChartValueFormatter(
+        private val models: List<ConsumptionModel>
+    ) : ValueFormatter() {
+        override fun getFormattedValue(value: Float): String {
+            return resources.getStringArray(R.array.week_days)[
+                    (models[value.toInt()].date.get(Calendar.DAY_OF_WEEK) - 1) % 7
+            ].take(3)
+        }
     }
 
 }
