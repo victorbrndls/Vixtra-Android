@@ -7,6 +7,6 @@ data class Medicine(
     val name: String,
     val description: String?,
     var hourInterval: Int,
-    var startTime: Calendar,
-    var repetition: Int
+    var repetition: Int,
+    var consumptionTime: Calendar
 )

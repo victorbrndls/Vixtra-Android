@@ -41,19 +41,24 @@ class AddMedicineViewModel(
         viewModelScope.launch {
             val medicine = createMedicine()
             medicineService.save(medicine)
-            
+
             isLoading.value = false
         }
     }
 
     private fun createMedicine(): Medicine {
+        val consumptionTime = model.startTime ?: Calendar.getInstance()
+        val interval = model.hourInterval ?: 8
+
+        consumptionTime.add(Calendar.HOUR_OF_DAY, interval)
+
         return Medicine(
             Random.nextLong(),
             model.medicine!!,
             model.description,
-            model.hourInterval ?: 8,
-            model.startTime ?: Calendar.getInstance(),
-            model.repetition
+            interval,
+            model.repetition,
+            consumptionTime
         )
     }
 

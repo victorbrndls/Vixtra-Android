@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/medi_icon"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_marginStart="16dp"
@@ -16,13 +16,13 @@
         app:srcCompat="@drawable/pill_black_48" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/medi_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/medi_icon"
+        app:layout_constraintStart_toEndOf="@+id/medi_icon"
+        app:layout_constraintTop_toTopOf="@+id/medi_icon"
         tools:text="Eno" />
 
     <ImageView
@@ -30,39 +30,39 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView2"
-        app:layout_constraintEnd_toStartOf="@+id/textView2"
-        app:layout_constraintTop_toTopOf="@+id/textView2"
+        app:layout_constraintBottom_toBottomOf="@+id/medi_interval"
+        app:layout_constraintEnd_toStartOf="@+id/medi_interval"
+        app:layout_constraintTop_toTopOf="@+id/medi_interval"
         app:srcCompat="@drawable/autorenew_black_24" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/medi_interval"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/medi_icon"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/medi_icon"
         tools:text="8 hrs" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/medi_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:layout_marginTop="4dp"
         android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/medi_icon"
+        app:layout_constraintTop_toBottomOf="@+id/medi_icon"
         tools:text="Tomar o remedio quando tiver com sede" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/medi_delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@+id/imageView4"
-        app:layout_constraintEnd_toEndOf="@+id/textView2"
+        app:layout_constraintEnd_toEndOf="@+id/medi_interval"
         app:srcCompat="@drawable/delete_forever_black_24" />
 
     <ImageView
@@ -72,16 +72,16 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:layout_constraintStart_toStartOf="@+id/medi_icon"
+        app:layout_constraintTop_toBottomOf="@+id/medi_description"
         app:srcCompat="@drawable/rounded_circle" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/medi_consumption_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@+id/imageView4"
-        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="@+id/medi_name"
         app:layout_constraintTop_toTopOf="@+id/imageView4"
         tools:text="20/08/2020 21:30" />
 </androidx.constraintlayout.widget.ConstraintLayout>

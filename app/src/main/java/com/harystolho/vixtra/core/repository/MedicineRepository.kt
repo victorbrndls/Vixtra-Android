@@ -14,4 +14,8 @@ class MedicineRepository {
         medicines.add(medicine)
     }
 
+    suspend fun getMedicines(): List<Medicine> {
+        return listOf(*medicines.toTypedArray())
+    }
+
 }

@@ -11,6 +11,8 @@ class MedicineService(
         medicineRepository.save(medicine)
     }
 
-
+    suspend fun getMedicines() : List<Medicine> {
+        return medicineRepository.getMedicines()
+    }
 
 }
