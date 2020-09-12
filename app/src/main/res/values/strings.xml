@@ -1,6 +1,19 @@
 <resources>
+
     <string name="app_name">Vixtra</string>
     <string name="title_medicines">Remédios</string>
     <string name="title_historic">Histórico</string>
     <string name="title_add_medicine">Cadastrar</string>
+
+    <string name="generic_save_success">Salvo!</string>
+
+    <string name="addmed_title">Cadastrar</string>
+    <string name="addmed_medicine">Medicamento</string>
+    <string name="addmed_description">Descrição</string>
+    <string name="addmed_interval">Intervalo (horas)</string>
+    <string name="addmed_start_date">Hora de início</string>
+    <string name="addmed_repetition">Quantidade de repetição</string>
+
+    <string name="error_required_field">Campo obrigatório</string>
+
 </resources>
