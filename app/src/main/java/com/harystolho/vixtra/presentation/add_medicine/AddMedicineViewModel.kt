@@ -7,7 +7,6 @@ import com.harystolho.vixtra.core.entity.Medicine
 import com.harystolho.vixtra.core.service.MedicineService
 import kotlinx.coroutines.launch
 import java.util.*
-import kotlin.random.Random
 
 class AddMedicineViewModel(
     private val medicineService: MedicineService
@@ -54,7 +53,7 @@ class AddMedicineViewModel(
         consumptionTime.add(Calendar.HOUR_OF_DAY, interval)
 
         return Medicine(
-            Random.nextLong(),
+            UUID.randomUUID().toString(),
             model.medicine!!,
             model.description,
             interval,

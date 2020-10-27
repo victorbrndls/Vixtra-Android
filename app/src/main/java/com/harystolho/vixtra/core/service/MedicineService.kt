@@ -1,11 +1,11 @@
 package com.harystolho.vixtra.core.service
 
 import com.harystolho.vixtra.core.entity.Medicine
-import com.harystolho.vixtra.core.repository.MedicineRepository
+import com.harystolho.vixtra.core.repository.firestore.FirestoreMedicineRepository
 import java.util.*
 
 class MedicineService(
-    private val medicineRepository: MedicineRepository,
+    private val medicineRepository: FirestoreMedicineRepository,
     private val medicineHistoricService: MedicineHistoricService
 ) {
 
@@ -13,7 +13,7 @@ class MedicineService(
         medicineRepository.save(medicine)
     }
 
-    suspend fun delete(id: Long) {
+    suspend fun delete(id: String) {
         medicineRepository.delete(id)
     }
 
@@ -21,7 +21,7 @@ class MedicineService(
         return medicineRepository.getMedicines()
     }
 
-    suspend fun consume(id: Long) {
+    suspend fun consume(id: String) {
         val medicine = medicineRepository.get(id) ?: return
 
         medicineHistoricService.recordConsumption(medicine)

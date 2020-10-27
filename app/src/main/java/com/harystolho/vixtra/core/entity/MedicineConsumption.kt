@@ -3,6 +3,6 @@ package com.harystolho.vixtra.core.entity
 import java.util.*
 
 class MedicineConsumption(
-    val medicineId: Long,
+    val medicineId: String,
     val consumption: Calendar
 )

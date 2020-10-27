@@ -1,7 +1,8 @@
 package com.harystolho.vixtra.di
 
-import com.harystolho.vixtra.core.repository.MedicineConsumptionRepository
-import com.harystolho.vixtra.core.repository.MedicineRepository
+import com.google.firebase.firestore.FirebaseFirestore
+import com.harystolho.vixtra.core.repository.firestore.FirestoreMedicineConsumptionRepository
+import com.harystolho.vixtra.core.repository.firestore.FirestoreMedicineRepository
 import com.harystolho.vixtra.core.service.MedicineHistoricService
 import com.harystolho.vixtra.core.service.MedicineService
 import com.harystolho.vixtra.presentation.add_medicine.AddMedicineViewModel
@@ -12,8 +13,8 @@ import org.koin.dsl.module
 
 val modules = module {
 
-    single { MedicineRepository() }
-    single { MedicineConsumptionRepository() }
+    single { FirestoreMedicineRepository(FirebaseFirestore.getInstance()) }
+    single { FirestoreMedicineConsumptionRepository(FirebaseFirestore.getInstance()) }
 
     single { MedicineService(get(), get()) }
     single { MedicineHistoricService(get()) }
