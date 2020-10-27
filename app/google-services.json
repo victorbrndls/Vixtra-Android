@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "710498575498",
+    "firebase_url": "https://vixtra-app.firebaseio.com",
+    "project_id": "vixtra-app",
+    "storage_bucket": "vixtra-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:710498575498:android:8b4a915377770a00ba7973",
+        "android_client_info": {
+          "package_name": "com.harystolho.vixtra"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "710498575498-p7kihpl27daa812go13ilokpnueqhmjs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1PqUocsD1-qOp5PO7XHPdMgtjBdAi7QY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "710498575498-p7kihpl27daa812go13ilokpnueqhmjs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

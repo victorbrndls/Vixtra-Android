@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 29
@@ -56,6 +57,10 @@ dependencies {
 
     // Date/Time Picker
     implementation 'com.wdullaer:materialdatetimepicker:4.2.3'
+
+    // Firebase
+    implementation platform('com.google.firebase:firebase-bom:26.0.0')
+    implementation 'com.google.firebase:firebase-firestore-ktx'
 
     // Charts
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
