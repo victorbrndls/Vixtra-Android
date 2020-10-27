@@ -82,6 +82,7 @@ class FirestoreMedicineRepository(private val firestore: FirebaseFirestore) {
                 .addOnCompleteListener { task ->
                     if (!task.isSuccessful) {
                         cont.resume(emptyList())
+                        Log.e(TAG, "Error fetching medicines", task.exception)
                         return@addOnCompleteListener
                     }
 
@@ -103,8 +104,8 @@ class FirestoreMedicineRepository(private val firestore: FirebaseFirestore) {
             data["id"] as String,
             data["nome"] as String,
             data["descricao"] as String?,
-            data["intervalo_hora"] as Int,
-            data["repeticao"] as Int,
+            (data["intervalo_hora"] as Long).toInt(),
+            (data["repeticao"] as Long).toInt(),
             DATE_FORMATTER.parse(data["horario_consumo"] as String)!!.toCalendar()
         )
     }

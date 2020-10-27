@@ -97,6 +97,7 @@ class HistoricFragment : Fragment() {
         }
 
         chart.data = barData
+        chart.invalidate()
         chart.xAxis.labelCount = models.size
     }
 
