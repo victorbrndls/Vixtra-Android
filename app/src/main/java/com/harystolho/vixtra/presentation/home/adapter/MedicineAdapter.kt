@@ -15,6 +15,7 @@ import java.util.*
 class MedicineAdapter(
     medicines: List<Medicine>,
     private val onClick: (Medicine) -> Unit,
+    private val onEdit: (Medicine) -> Unit,
     private val onDelete: (Medicine) -> Unit
 ) : RecyclerView.Adapter<MedicineViewHolder>() {
 
@@ -23,7 +24,7 @@ class MedicineAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MedicineViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.layout_medicine_item, parent, false)
-        return MedicineViewHolder(view, onClick, onDelete)
+        return MedicineViewHolder(view, onClick, onEdit, onDelete)
     }
 
     override fun getItemCount() = _medicines.size
@@ -41,12 +42,16 @@ class MedicineAdapter(
 }
 
 class MedicineViewHolder(
-    view: View, private val onClick: (Medicine) -> Unit, private val onDelete: (Medicine) -> Unit
+    view: View,
+    private val onClick: (Medicine) -> Unit,
+    private val onEdit: (Medicine) -> Unit,
+    private val onDelete: (Medicine) -> Unit
 ) : RecyclerView.ViewHolder(view) {
 
     @SuppressLint("SetTextI18n")
     fun bind(medicine: Medicine) {
         itemView.setOnClickListener { onClick(medicine) }
+        itemView.medi_edit.setOnClickListener { onEdit(medicine) }
         itemView.medi_delete.setOnClickListener { onDelete(medicine) }
 
         itemView.medi_name.text = medicine.name

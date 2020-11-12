@@ -13,11 +13,27 @@ class AddMedicineViewModel(
 ) : ViewModel() {
 
     private val model = AddMedicineModel()
+    private var loaded: Medicine? = null
 
     val action = MutableLiveData<AddMedicineAction>()
 
     val isLoading = MutableLiveData(false)
     val error = MutableLiveData<AddMedicineError>()
+
+    fun load(id: String) {
+        viewModelScope.launch {
+            val med = medicineService.getMedicine(id)!!
+            loaded = med
+
+            model.medicine = med.name
+            model.description = med.description
+            model.hourInterval = med.hourInterval
+            model.repetition = med.repetition
+            model.startTime = med.consumptionTime
+
+            action.value = AddMedicineAction.ShowModel(model)
+        }
+    }
 
     fun updateModel(
         medicine: String? = null,
@@ -53,7 +69,7 @@ class AddMedicineViewModel(
         consumptionTime.add(Calendar.HOUR_OF_DAY, interval)
 
         return Medicine(
-            UUID.randomUUID().toString(),
+            loaded?.id ?: UUID.randomUUID().toString(),
             model.medicine!!,
             model.description,
             interval,
@@ -88,6 +104,7 @@ class AddMedicineModel(
 
 sealed class AddMedicineAction {
     object Finish : AddMedicineAction()
+    data class ShowModel(val model: AddMedicineModel) : AddMedicineAction()
 }
 
 enum class AddMedicineError {

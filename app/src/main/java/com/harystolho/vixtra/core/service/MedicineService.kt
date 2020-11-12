@@ -17,6 +17,10 @@ class MedicineService(
         medicineRepository.delete(id)
     }
 
+    suspend fun getMedicine(id: String): Medicine? {
+        return medicineRepository.get(id)
+    }
+
     suspend fun getMedicines(): List<Medicine> {
         return medicineRepository.getMedicines()
     }

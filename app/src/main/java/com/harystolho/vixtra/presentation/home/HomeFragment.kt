@@ -47,11 +47,18 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupAdapter() {
-        adapter = MedicineAdapter(emptyList(), onClick, onDelete)
+        adapter = MedicineAdapter(emptyList(), onClick, onEdit, onDelete)
         homeMedicines.adapter = adapter
     }
 
     private val onClick = { medicine: Medicine -> viewModel.confirmConsume(medicine) }
+
+    private val onEdit = { medicine: Medicine ->
+        startActivity(Intent(requireContext(), AddMedicineActivity::class.java).apply {
+            putExtra("id", medicine.id)
+        })
+    }
+
     private val onDelete = { medicine: Medicine -> viewModel.delete(medicine) }
 
     private fun observeViewModel() {

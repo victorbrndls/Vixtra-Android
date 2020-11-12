@@ -26,6 +26,8 @@ class AddMedicineActivity : AppCompatActivity() {
         setupToolbar(getString(R.string.addmed_title))
         initViews()
         observeViewModel()
+
+        intent.extras?.getString("id")?.let { viewModel.load(it) }
     }
 
     private fun initViews() {
@@ -82,6 +84,23 @@ class AddMedicineActivity : AppCompatActivity() {
                 AddMedicineAction.Finish -> {
                     Toast.makeText(this, R.string.generic_save_success, Toast.LENGTH_SHORT).show()
                     finish()
+                }
+
+                is AddMedicineAction.ShowModel -> {
+                    addmed_medicine.text =
+                        Editable.Factory.getInstance().newEditable(it.model.medicine)
+                    addmed_description.text =
+                        Editable.Factory.getInstance().newEditable(it.model.description)
+                    addmed_interval.text = Editable.Factory.getInstance()
+                        .newEditable(it.model.hourInterval?.toString() ?: "1")
+
+                    val h = it.model.startTime?.get(Calendar.HOUR_OF_DAY)
+                    val m = it.model.startTime?.get(Calendar.MINUTE)
+                    if (h != null && m != null)
+                        addmed_start_time.text = Editable.Factory.getInstance().newEditable("$h:$m")
+
+                    addmed_repetition.text =
+                        Editable.Factory.getInstance().newEditable(it.model.repetition.toString())
                 }
             }
         })
